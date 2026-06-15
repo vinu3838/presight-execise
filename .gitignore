@@ -13,6 +13,11 @@ dist/
 build/
 scripts/
 
+# sqlite
+*.db
+*.db-shm
+*.db-wal
+
 # misc
 .DS_Store
 .env
