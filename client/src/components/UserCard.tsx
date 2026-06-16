@@ -16,13 +16,13 @@ export default function UserCard({ user }: Props) {
         className="w-14 h-14 rounded-full shrink-0 bg-gray-100"
       />
       <div className="flex-1 min-w-0">
-        <div className="flex items-baseline justify-between gap-2">
-          <span className="font-semibold text-gray-900 truncate">
-            {user.first_name} {user.last_name}
-          </span>
+        <p className="font-semibold text-gray-900 truncate">
+          {user.first_name} {user.last_name}
+        </p>
+        <div className="flex items-baseline justify-between gap-2 mt-0.5">
+          <span className="text-sm text-gray-500 truncate">{user.nationality}</span>
           <span className="text-sm text-gray-500 shrink-0">{user.age}y</span>
         </div>
-        <p className="text-sm text-gray-500 mt-0.5">{user.nationality}</p>
         {user.hobbies.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mt-2">
             {visibleHobbies.map((hobby) => (
