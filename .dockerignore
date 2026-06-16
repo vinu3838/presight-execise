@@ -1,0 +1,9 @@
+node_modules
+**/node_modules
+**/dist
+server/data
+.git
+.gitignore
+*.md
+yarn-error.log
+yarn-debug.log

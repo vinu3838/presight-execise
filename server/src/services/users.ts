@@ -69,6 +69,9 @@ function attachHobbies(userRows: UserRow[]): UserDTO[] {
 
 export function getUsers(query: UsersQueryDTO): UsersResponseDTO {
   const { sql: whereSQL, params } = buildWhere(query);
+  // Exclude same-type filter from aggregations so multi-select remains possible
+  const { sql: hobbiesWhereSQL, params: hobbiesParams } = buildWhere({ ...query, hobbies: [] });
+  const { sql: nationalitiesWhereSQL, params: nationalitiesParams } = buildWhere({ ...query, nationalities: [] });
   const { sortBy, sortDir, page, limit } = query;
   const offset = (page - 1) * limit;
   const direction = sortDir === "desc" ? "DESC" : "ASC";
@@ -95,23 +98,23 @@ export function getUsers(query: UsersQueryDTO): UsersResponseDTO {
        FROM hobbies h
        JOIN user_hobbies uh ON uh.hobby_id = h.id
        JOIN users u ON u.id = uh.user_id
-       ${whereSQL}
+       ${hobbiesWhereSQL}
        GROUP BY h.id
        ORDER BY count DESC, h.name ASC
        LIMIT 20`
     )
-    .all(...params) as FilterValueDTO[];
+    .all(...hobbiesParams) as FilterValueDTO[];
 
   const topNationalities = db
     .prepare(
       `SELECT u.nationality as value, COUNT(*) as count
        FROM users u
-       ${whereSQL}
+       ${nationalitiesWhereSQL}
        GROUP BY u.nationality
        ORDER BY count DESC, u.nationality ASC
        LIMIT 20`
     )
-    .all(...params) as FilterValueDTO[];
+    .all(...nationalitiesParams) as FilterValueDTO[];
 
   return {
     data,

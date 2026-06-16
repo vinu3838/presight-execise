@@ -1,0 +1,26 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    environment:
+      - DB_PATH=/data/users.db
+      - PORT=3001
+    volumes:
+      - sqlite_data:/data
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    restart: unless-stopped
+
+volumes:
+  sqlite_data:
