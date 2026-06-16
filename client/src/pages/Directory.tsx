@@ -69,6 +69,15 @@ export default function Directory() {
     [selectedNationalities, setSearchParams]
   );
 
+  const handleClearAllFilters = useCallback(() => {
+    setSearchParams((prev) => {
+      const p = new URLSearchParams(prev);
+      p.delete("hobbies");
+      p.delete("nationalities");
+      return p;
+    });
+  }, [setSearchParams]);
+
   const { users, total, filters, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } =
     useUsers({
       q: debouncedSearch,
@@ -89,6 +98,7 @@ export default function Directory() {
         selectedNationalities={selectedNationalities}
         onToggleHobby={handleToggleHobby}
         onToggleNationality={handleToggleNationality}
+        onClearAll={handleClearAllFilters}
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
       />

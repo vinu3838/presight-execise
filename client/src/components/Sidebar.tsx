@@ -8,6 +8,7 @@ interface Props {
   selectedNationalities: string[];
   onToggleHobby: (value: string) => void;
   onToggleNationality: (value: string) => void;
+  onClearAll: () => void;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -19,6 +20,7 @@ export default function Sidebar({
   selectedNationalities,
   onToggleHobby,
   onToggleNationality,
+  onClearAll,
   isOpen,
   onClose,
 }: Props) {
@@ -47,10 +49,7 @@ export default function Sidebar({
           <div className="flex items-center gap-2">
             {hasActiveFilters && (
               <button
-                onClick={() => {
-                  selectedHobbies.forEach(onToggleHobby);
-                  selectedNationalities.forEach(onToggleNationality);
-                }}
+                onClick={onClearAll}
                 className="text-xs text-blue-600 hover:underline cursor-pointer"
               >
                 Clear all
