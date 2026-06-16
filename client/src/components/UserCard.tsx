@@ -6,7 +6,8 @@ interface Props {
 
 export default function UserCard({ user }: Props) {
   const visibleHobbies = user.hobbies.slice(0, 2);
-  const extraCount = user.hobbies.length - visibleHobbies.length;
+  const extraHobbies = user.hobbies.slice(2);
+  const extraCount = extraHobbies.length;
 
   return (
     <div className="flex items-start gap-4 bg-blue-50/60 border border-blue-100 rounded-lg p-4 hover:shadow-md transition-shadow">
@@ -34,7 +35,10 @@ export default function UserCard({ user }: Props) {
               </span>
             ))}
             {extraCount > 0 && (
-              <span className="text-xs bg-gray-100 text-gray-500 rounded-full px-2 py-0.5">
+              <span
+                title={extraHobbies.join(", ")}
+                className="text-xs bg-gray-100 text-gray-500 rounded-full px-2 py-0.5 cursor-default"
+              >
                 +{extraCount}
               </span>
             )}
