@@ -9,7 +9,7 @@ export default function UserCard({ user }: Props) {
   const extraCount = user.hobbies.length - visibleHobbies.length;
 
   return (
-    <div className="flex items-start gap-4 bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+    <div className="flex items-start gap-4 bg-blue-50/60 border border-blue-100 rounded-lg p-4 hover:shadow-md transition-shadow">
       <img
         src={user.avatar}
         alt={`${user.first_name} ${user.last_name}`}

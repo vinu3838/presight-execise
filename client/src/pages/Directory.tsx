@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
+import { SlidersHorizontal } from "lucide-react";
 import type { SortField, SortDir } from "../types";
 import { useDebounce } from "../hooks/useDebounce";
 import { useUsers } from "../hooks/useUsers";
@@ -80,7 +81,7 @@ export default function Directory() {
   const activeFilterCount = selectedHobbies.length + selectedNationalities.length;
 
   return (
-    <div className="flex h-screen bg-gray-50 overflow-hidden">
+    <div className="flex h-screen bg-blue-50 overflow-hidden">
       <Sidebar
         hobbies={filters.hobbies}
         nationalities={filters.nationalities}
@@ -94,15 +95,13 @@ export default function Directory() {
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top bar */}
-        <header className="flex items-center gap-3 px-4 py-3 bg-white border-b border-gray-200 shrink-0">
+        <header className="flex items-center gap-3 px-4 py-3 bg-blue-50 border-b border-blue-200 shrink-0">
           {/* Mobile filter toggle */}
           <button
             onClick={() => setSidebarOpen(true)}
             className="lg:hidden flex items-center gap-1.5 text-sm text-gray-600 border border-gray-300 rounded-lg px-3 py-2 hover:bg-gray-50 shrink-0"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
-            </svg>
+            <SlidersHorizontal className="w-4 h-4" />
             Filters
             {activeFilterCount > 0 && (
               <span className="bg-blue-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">

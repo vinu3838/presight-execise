@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import type { FilterValueDTO } from "../types";
 
 interface Props {
@@ -12,10 +13,10 @@ export default function FilterGroup({ title, items, selected, onToggle }: Props)
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden">
+    <div className="border border-blue-200 rounded-lg overflow-hidden">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="w-full flex items-center justify-between px-3 py-2.5 bg-gray-50 hover:bg-gray-100 transition-colors"
+        className="w-full flex items-center justify-between px-3 py-2.5 bg-blue-50 hover:bg-blue-100 transition-colors cursor-pointer"
       >
         <div className="flex items-center gap-2">
           <span className="text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -27,14 +28,9 @@ export default function FilterGroup({ title, items, selected, onToggle }: Props)
             </span>
           )}
         </div>
-        <svg
+        <ChevronDown
           className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        />
       </button>
 
       {isOpen && (
@@ -49,7 +45,7 @@ export default function FilterGroup({ title, items, selected, onToggle }: Props)
                   <li key={item.value}>
                     <button
                       onClick={() => onToggle(item.value)}
-                      className={`w-full flex items-center justify-between text-sm px-2 py-1.5 rounded-md transition-colors text-left ${
+                      className={`w-full flex items-center justify-between text-sm px-2 py-1.5 rounded-md transition-colors text-left cursor-pointer ${
                         isSelected
                           ? "bg-blue-50 text-blue-700 font-medium"
                           : "text-gray-700 hover:bg-gray-100"

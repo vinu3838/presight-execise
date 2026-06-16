@@ -36,13 +36,13 @@ export default function Sidebar({
 
       <aside
         className={`
-          fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-200 z-40 flex flex-col
+          fixed top-0 left-0 h-full w-72 bg-blue-100 border-r border-blue-200 z-40 flex flex-col
           transform transition-transform duration-200 ease-in-out
           lg:relative lg:translate-x-0 lg:z-auto lg:flex
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between p-4 border-b border-blue-200">
           <h2 className="font-semibold text-gray-800">Filters</h2>
           <div className="flex items-center gap-2">
             {hasActiveFilters && (
@@ -51,12 +51,12 @@ export default function Sidebar({
                   selectedHobbies.forEach(onToggleHobby);
                   selectedNationalities.forEach(onToggleNationality);
                 }}
-                className="text-xs text-blue-600 hover:underline"
+                className="text-xs text-blue-600 hover:underline cursor-pointer"
               >
                 Clear all
               </button>
             )}
-            <button onClick={onClose} className="lg:hidden text-gray-400 hover:text-gray-600 p-1">
+            <button onClick={onClose} className="lg:hidden text-gray-400 hover:text-gray-600 p-1 cursor-pointer">
               ✕
             </button>
           </div>
